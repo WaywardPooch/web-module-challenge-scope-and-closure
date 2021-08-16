@@ -100,17 +100,22 @@ function finalScore(inningScoreCB,numOfInnings) {
     Away: totalScoreAway
   };
 }
-
+// Test the final score function
+console.log("Task 3: Final Score Generator", finalScore(inning,9));
 
 /* ⚾️⚾️⚾️ Task 4: getInningScore() ⚾️⚾️⚾️
 Use the getInningScore() function below to do the following:
   1. Receive a callback function - you will pass in the inning function from task 2 as your argument 
   2. Return an object with a score for home and a score for away that populates from invoking the inning callback function */
 
-function getInningScore(/*Your Code Here */) {
-  /*Your Code Here */
+function getInningScore(inningScoreCB) {
+  return {
+    Home: inningScoreCB(),
+    Away: inningScoreCB()
+  };
 }
-
+// Test the get inning score function
+console.log("Task 4: Single Inning Score Generator",getInningScore(inning));
 
 /* ⚾️⚾️⚾️ Task 5: scoreboard() ⚾️⚾️⚾️
 Use the scoreboard function below to do the following:
