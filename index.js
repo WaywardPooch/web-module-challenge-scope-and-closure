@@ -174,6 +174,7 @@ function scoreboard(getInningScoreCB, inningCB, numOfInnings) {
   let homeScore = 0;
   // Loop for the number of innings, provide a score string for each
   for (let i = 1; i < numOfInnings + 1; i++) {
+    // Push the dynamic inning score string to the scoreboard array
     scoreboardArray.push(
       `Inning ${i}: Away ${getInningScoreCB(inningCB).Away} - Home ${
         getInningScoreCB(inningCB).Home
@@ -183,9 +184,9 @@ function scoreboard(getInningScoreCB, inningCB, numOfInnings) {
   // Create empty array to store the current inning score string, split up by word
   let splitCurrentInningString = [];
   // Loop through the scoreboard by inning
-  for (let i = 0; i < numOfInnings + 1; i++) {
+  for (let i = 0; i < numOfInnings; i++) {
     // Split the current inning-string by its spaces
-    splitCurrentInningString = scoreboardArray[i].split(" ");
+    splitCurrentInningString = scoreboardArray[i].toString().split(" ");
     // Add the away score at the 3rd index to the total away score
     awayScore += parseInt(splitCurrentInningString[3]);
     // Add the home score at the 6th index to the total home score
@@ -196,15 +197,18 @@ function scoreboard(getInningScoreCB, inningCB, numOfInnings) {
     scoreboardArray.push(
       `This game will require extra innings: Away ${awayScore} - Home ${homeScore}`
     );
-    // If the final score is not a tie, add the final score line
   } else {
+    // If the final score is not a tie, add the final score line
     scoreboardArray.push(`Final Score: Away ${awayScore} - Home ${homeScore}`);
   }
   // Return the scoreboard of each inning
   return scoreboardArray;
 }
 
-console.log(scoreboard(getInningScore, inning, 9));
+console.log(
+  "Task 5: Dynamic Scoreboard",
+  scoreboard(getInningScore, inning, 9)
+);
 
 /* 🛑🛑🛑🛑🛑 Please do not modify anything below this line 🛑🛑🛑🛑🛑 */
 function foo() {
