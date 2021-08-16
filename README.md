@@ -9,7 +9,7 @@ The module challenge is the afternoon project or assignment that students work t
 ## Objectives
 
 - Explain function scope
-- Describe what closure is, how closure is created in a program and why it is important to understand closures in JavaScript  
+- Describe what closure is, how closure is created in a program and why it is important to understand closures in JavaScript
 
 ## Introduction
 
@@ -17,7 +17,7 @@ This challenge focuses on both scope and closures.
 
 In this challenge you will be working to build a `scoreboard` (in the console) that takes randomly generated data and keeps track of a game's progress. If you're not familiar with the rules of baseball what you need to know is this: there are 9 innings and teams take turns "at-bat." Teams can only score while they are at bat. A team stops being at bat once they have gotten 3 `outs` by either striking out or through game play. You can read more about baseball rules [here](https://www.rulesofsport.com/sports/baseball.html).
 
-A scoreboard in a major league stadium looks something like this. In fact, the scoreboard at Fenway Park in Boston is actually quite famous. 
+A scoreboard in a major league stadium looks something like this. In fact, the scoreboard at Fenway Park in Boston is actually quite famous.
 
 ![Fenway Scoreboard](https://storage.googleapis.com/afs-prod/media/media:e959506330fd4e5890023c93cfbaac55/800.jpeg)
 
@@ -29,14 +29,12 @@ There are layers upon layers of nested functions within the game of baseball. Yo
 
 Using VSCode and Command Line:
 
-
 1. Fork the repo
 2. Clone your forked version of the repo
 3. cd into your repo and create a branch with your first and last name
 4. open the terminal in your vs code and type `npm install`
 5. next type `npm run test` in your terminal
 6. Complete your work making regular commits, once you have all your tests passing and you are ready to submit your work please see canvas for instructions on how to submit
-
 
 ### Task 2a - MVP code
 
@@ -47,42 +45,50 @@ Find the file `index.js` and complete all tasks.
 Open a second terminal inside of your project by clicking on the split terminal icon
 ![alt text](assets/split_terminal.png "Split Terminal")
 
-Inside of your second terminal type `npm start` 
+Inside of your second terminal type `npm start`
 ![alt text](assets/npm_start.png "type npm start")
 
 You will be running your tests in one terminal and debugging in the other. As you work on your code you should make use of `console.log` to check your progress and debug.
 ![alt text](assets/tests_debug_terminal_final.png "your terminal should look like this")
-
 
 ### Task 2b - Written questions
 
 Edit the `ReadMe` file with your answers to the questions below.
 
 1. In your own words, define closure (1-2 sentences).
+
+   Closure is when you have a function in JavaScript pull in a variable of a desired name from outside of its immediate scope when it cannot find one with that name in its own scope.
+
 2. Study the following code, then answer the questions below.
 
 ```js
-function personalDice(name){
-  return function(){
-      // generate random number between 1 and 6
+function personalDice(name) {
+  return function () {
+    // generate random number between 1 and 6
     const newRoll = Math.floor(Math.random() * 6);
-    console.log(`${name} rolled a ${newRoll}`)
-  }
+    console.log(`${name} rolled a ${newRoll}`);
+  };
 }
 
 const dansRoll = personalDice("Dan");
 
 const zoesRoll = personalDice("Zoe");
 
-
 dansRoll();
 dansRoll();
 ```
 
 a. Where is closure used in this code? How can you tell?
-b. Compare and contrast calling `dansRoll` the first and second time. What is always the same? What could change?
-c. What is the lexical scope of `newRoll`? 
 
+Closure is present within the return function inside of the `personalDice()` function, as it's pulling the `name` variable from outside of its immediate scope.
+
+b. Compare and contrast calling `dansRoll` the first and second time. What is always the same? What could change?
+
+The `name` is always going to be `"Dan"` but the roll value will be decided by `newRoll`, which is random every time the function is called.
+
+c. What is the lexical scope of `newRoll`?
+
+The lexical scope of `newRoll` is the block of the function it's inside of (its "context"), which in this case is `personalDice() {}`.
 
 ### Task 3 - Stretch Goals
 

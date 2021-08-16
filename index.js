@@ -17,6 +17,7 @@ function processFirstItem(stringList, callback) {
   return callback(stringList[0]);
 }
 console.log(
+  "Task 1: Example",
   processFirstItem(["foo", "bar"], function (str) {
     return str + str;
   })
@@ -173,9 +174,9 @@ function scoreboard(getInningScoreCB, inningCB, numOfInnings) {
   const scoreboardArray = [];
   let awayScore = 0;
   let homeScore = 0;
-  // Loop for the number of innings, provide a score string for each
+  // Loop for the number of innings
   for (let i = 1; i < numOfInnings + 1; i++) {
-    // Push the dynamic inning score string to the scoreboard array
+    // Push a dynamic inning score string to the scoreboard array
     scoreboardArray.push(
       `Inning ${i}: Away ${getInningScoreCB(inningCB).Away} - Home ${
         getInningScoreCB(inningCB).Home
