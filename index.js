@@ -27,19 +27,23 @@ console.log(processFirstItem(['foo','bar'],function(str){return str+str}));
   
   Study the code for counter1 and counter2, then answer the questions below.
   
-  1. What is the difference between counter1 and counter2?
-  
-  2. Which of the two uses a closure? How can you tell?
-  
-  3. In what scenario would the counter1 code be preferable? In what scenario would 
-     counter2 be better?  
+  1.  What is the difference between counter1 and counter2?
+      In counter1, the count variable exists only within the scope of the function.
+      In counter2, the count exists outside of the function.
+
+  2.  Which of the two uses a closure? How can you tell?
+      They both use closures, as they both counter functions access and modify variables outside of their immediate scope.
+
+  3.  In what scenario would the counter1 code be preferable? In what scenario would counter2 be better?
+      If you wanted to use the counter variable outside of the counter function, then counter2 would be better. Otherwise, counter1 will keep the function closed.
+
 */
 
 // counter1 code
 function counterMaker() {
   let count = 0;
   return function counter() {
-   return count++;
+    return count++;
   }
 }
 
@@ -62,10 +66,10 @@ Use the inning function below to do the following:
 NOTE: This will be a callback function for the tasks below
 */
 
-function inning(/*Code Here*/){
-    /*Code Here*/
+function inning() {
+  return Math.floor(Math.random()*3);
 }
-
+console.log("Task 2: Testing the inning function 5 times: ",inning(),inning(),inning(),inning(),inning());
 
 /* ⚾️⚾️⚾️ Task 3: finalScore() ⚾️⚾️⚾️
 Use the finalScore function below to do the following:
