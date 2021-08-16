@@ -85,9 +85,22 @@ Use the finalScore function below to do the following:
 }
 */ 
 
-function finalScore(/*code Here*/){
-  /*Code Here*/
+function finalScore(inningScoreCB,numOfInnings) {
+  // Create home/away total score variables, set initial score to 0
+  let totalScoreAway = 0;
+  let totalScoreHome = 0;
+  // Add a random score between 0 and 2 to each side every inning
+  for (let i = 0; i < numOfInnings; i++) {
+    totalScoreAway += inningScoreCB();
+    totalScoreHome += inningScoreCB();
+  }
+  // Return an object with the keys and scores to match
+  return {
+    Home: totalScoreHome,
+    Away: totalScoreAway
+  };
 }
+
 
 /* ⚾️⚾️⚾️ Task 4: getInningScore() ⚾️⚾️⚾️
 Use the getInningScore() function below to do the following:
