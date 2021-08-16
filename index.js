@@ -35,10 +35,11 @@ console.log(
       In counter2, the count exists outside of the function.
 
   2.  Which of the two uses a closure? How can you tell?
-      They both use closures, as they both counter functions access and modify variables outside of their immediate scope.
+      They both use closures, as both counter functions access and modify variables outside of their immediate scope.
 
   3.  In what scenario would the counter1 code be preferable? In what scenario would counter2 be better?
-      If you wanted to use the counter variable outside of the counter function, then counter2 would be better. Otherwise, counter1 will keep the function closed.
+      If you wanted to use the counter variable outside of the counter function, then counter2 would be better. 
+      Otherwise, counter1 is effective at keeping the function and its variables contained.
 
 */
 
@@ -187,9 +188,9 @@ function scoreboard(getInningScoreCB, inningCB, numOfInnings) {
   for (let i = 0; i < numOfInnings; i++) {
     // Split the current inning-string by its spaces
     splitCurrentInningString = scoreboardArray[i].toString().split(" ");
-    // Add the away score at the 3rd index to the total away score
+    // Add the away score (3rd index of inning line array) to the total away score
     awayScore += parseInt(splitCurrentInningString[3]);
-    // Add the home score at the 6th index to the total home score
+    // Add the home score (6th index of inning line array) to the total home score
     homeScore += parseInt(splitCurrentInningString[6]);
   }
   // If the final score is a tie, add the tie-game line to the end
@@ -204,7 +205,7 @@ function scoreboard(getInningScoreCB, inningCB, numOfInnings) {
   // Return the scoreboard of each inning
   return scoreboardArray;
 }
-
+// Log a test game scoreboard
 console.log(
   "Task 5: Dynamic Scoreboard",
   scoreboard(getInningScore, inning, 9)
