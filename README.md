@@ -57,7 +57,7 @@ Edit the `ReadMe` file with your answers to the questions below.
 
 1. In your own words, define closure (1-2 sentences).
 
-   Closure is when you have a function in JavaScript pull in a variable of a desired name from outside of its immediate scope when it cannot find one with that name in its own scope.
+Closure is when a nested function in JavaScript pulls in information from its parent, outside of its immediate scope, when it cannot find what it's looking for within its own scope.
 
 2. Study the following code, then answer the questions below.
 
