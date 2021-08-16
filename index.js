@@ -2,24 +2,27 @@
 
 /**Example Task : processFirstItem()
  * This example shows how you might go about solving the rest of the tasks
- * 
+ *
  * Use the higher order function processFirstItem below to do the following:
  *  1. Receive an array of strings in a parameter
  *  2. Receive a callback function that takes a string as its argument in a parameter
- *  3. Return the result of invoking the callback function and passing in the FIRST 
+ *  3. Return the result of invoking the callback function and passing in the FIRST
  *     element in the array as the argument
- * 
+ *
  * The following code is demonstrating a way of completing this task
  * It returns the string `foofoo`
-*/
+ */
 
 function processFirstItem(stringList, callback) {
-  return callback(stringList[0])
+  return callback(stringList[0]);
 }
-console.log(processFirstItem(['foo','bar'],function(str){return str+str}));
+console.log(
+  processFirstItem(["foo", "bar"], function (str) {
+    return str + str;
+  })
+);
 
 // ⭐️ Example Challenge END ⭐️
-
 
 ///// M V P ///////
 
@@ -44,7 +47,7 @@ function counterMaker() {
   let count = 0;
   return function counter() {
     return count++;
-  }
+  };
 }
 
 const counter1 = counterMaker();
@@ -56,7 +59,6 @@ function counter2() {
   return count++;
 }
 
-
 /* ⚾️⚾️⚾️ Task 2: inning() ⚾️⚾️⚾️
 Use the inning function below to do the following:
   1. Return a random whole number of points between 0 and 2 scored by one team in an inning
@@ -67,9 +69,16 @@ NOTE: This will be a callback function for the tasks below
 */
 
 function inning() {
-  return Math.floor(Math.random()*3);
+  return Math.floor(Math.random() * 3);
 }
-console.log("Task 2: Testing the inning function 5 times: ",inning(),inning(),inning(),inning(),inning());
+console.log(
+  "Task 2: Testing the inning function 5 times: ",
+  inning(),
+  inning(),
+  inning(),
+  inning(),
+  inning()
+);
 
 /* ⚾️⚾️⚾️ Task 3: finalScore() ⚾️⚾️⚾️
 Use the finalScore function below to do the following:
@@ -83,9 +92,9 @@ Use the finalScore function below to do the following:
   "Home": 11,
   "Away": 5
 }
-*/ 
+*/
 
-function finalScore(inningScoreCB,numOfInnings) {
+function finalScore(inningScoreCB, numOfInnings) {
   // Create home/away total score variables, set initial score to 0
   let totalScoreAway = 0;
   let totalScoreHome = 0;
@@ -97,11 +106,11 @@ function finalScore(inningScoreCB,numOfInnings) {
   // Return an object with the keys and scores to match
   return {
     Home: totalScoreHome,
-    Away: totalScoreAway
+    Away: totalScoreAway,
   };
 }
 // Test the final score function
-console.log("Task 3: Final Score Generator", finalScore(inning,9));
+console.log("Task 3: Final Score Generator", finalScore(inning, 9));
 
 /* ⚾️⚾️⚾️ Task 4: getInningScore() ⚾️⚾️⚾️
 Use the getInningScore() function below to do the following:
@@ -111,11 +120,11 @@ Use the getInningScore() function below to do the following:
 function getInningScore(inningScoreCB) {
   return {
     Home: inningScoreCB(),
-    Away: inningScoreCB()
+    Away: inningScoreCB(),
   };
 }
 // Test the get inning score function
-console.log("Task 4: Single Inning Score Generator",getInningScore(inning));
+console.log("Task 4: Single Inning Score Generator", getInningScore(inning));
 
 /* ⚾️⚾️⚾️ Task 5: scoreboard() ⚾️⚾️⚾️
 Use the scoreboard function below to do the following:
@@ -123,7 +132,7 @@ Use the scoreboard function below to do the following:
   2. Receive the callback function `inning` from Task 2
   3. Receive a number of innings to be played
   4. Return an array where each of it's index values equals a string stating the
-  Home and Away team's scores for each inning.  Not the cummulative score.
+  Home and Away team's scores for each inning.  Not the cumulative score.
   5. If there's a tie at the end of the innings, add this message containing the score to the end of the array:  "This game will require extra innings: Away 12 - Home 12"  (see tie example below)
      If there isn't a tie, add this message to the end of the array: "Final Score: Away 13 - Home 11"  (see no tie example below)
   
@@ -158,17 +167,49 @@ Use the scoreboard function below to do the following:
 ]  
   */
 
-function scoreboard(/* CODE HERE */) {
-  /* CODE HERE */
+function scoreboard(getInningScoreCB, inningCB, numOfInnings) {
+  // Create variables to store score/scoreboard
+  const scoreboardArray = [];
+  let awayScore = 0;
+  let homeScore = 0;
+  // Loop for the number of innings, provide a score string for each
+  for (let i = 1; i < numOfInnings + 1; i++) {
+    scoreboardArray.push(
+      `Inning ${i}: Away ${getInningScoreCB(inningCB).Away} - Home ${
+        getInningScoreCB(inningCB).Home
+      }`
+    );
+  }
+  // Create empty array to store the current inning score string, split up by word
+  let splitCurrentInningString = [];
+  // Loop through the scoreboard by inning
+  for (let i = 0; i < numOfInnings + 1; i++) {
+    // Split the current inning-string by its spaces
+    splitCurrentInningString = scoreboardArray[i].split(" ");
+    // Add the away score at the 3rd index to the total away score
+    awayScore += parseInt(splitCurrentInningString[3]);
+    // Add the home score at the 6th index to the total home score
+    homeScore += parseInt(splitCurrentInningString[6]);
+  }
+  // If the final score is a tie, add the tie-game line to the end
+  if (awayScore === homeScore) {
+    scoreboardArray.push(
+      `This game will require extra innings: Away ${awayScore} - Home ${homeScore}`
+    );
+    // If the final score is not a tie, add the final score line
+  } else {
+    scoreboardArray.push(`Final Score: Away ${awayScore} - Home ${homeScore}`);
+  }
+  // Return the scoreboard of each inning
+  return scoreboardArray;
 }
 
-
-
+console.log(scoreboard(getInningScore, inning, 9));
 
 /* 🛑🛑🛑🛑🛑 Please do not modify anything below this line 🛑🛑🛑🛑🛑 */
-function foo(){
-  console.log('its working');
-  return 'bar';
+function foo() {
+  console.log("its working");
+  return "bar";
 }
 foo();
 module.exports = {
@@ -180,4 +221,4 @@ module.exports = {
   finalScore,
   getInningScore,
   scoreboard,
-}
+};
